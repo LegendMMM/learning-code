@@ -1,26 +1,17 @@
-list = input("Input numbers (integers) list to sort:" )
-list = list[1:-1].split(",")
-sorting_list = []
-sorted_list = []
-while True:
-        try:
-            for i in list:
-                sorting_list.append(int(i))
+def main():
+    dictionary = {}
+    while True:
+        user_input = input("請輸入英文:中文字典翻譯字彙(輸入0:0結束) -> ")
+        if user_input == "0:0":
             break
-        except ValueError:
-            print("Please input integers.")
-            list = input("Input numbers (integers) list to sort:" )
-            list = list[1:-1].split(",")
-            continue
-l = len(sorting_list)
-print(sorted_list , " | " , sorting_list)
-for j in range(l):   
-    for i in range(len(sorting_list)-1):
-        if sorting_list[-i-2] > sorting_list[-i-1]:
-            sorting_list[-i-2],sorting_list[-i-1] = sorting_list[-i-1],sorting_list[-i-2]
-    sorted_list.append(sorting_list[0])
-    sorting_list.pop(0)
-    print(sorted_list , "|" , sorting_list)
-print("----------------------------")
-print("After sorted:")
-print(sorted_list)
+        if ":" in user_input:
+            en, zh = user_input.split(":", 1)
+            dictionary[en] = zh
+    if dictionary:
+        max_len = max(len(k) for k in dictionary.keys())
+        for en, zh in dictionary.items():
+            print(f"{en.rjust(max_len)} | {zh}")
+
+# main
+if __name__ == "__main__":
+    main()
